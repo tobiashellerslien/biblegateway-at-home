@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BibleGateway at home</title>
+    <link rel="icon" href="/logo_biblegateway.png" type="image/png">
+    <link rel="apple-touch-icon" href="/logo_biblegateway.png">
     <style>
         :root {
             --bg: #f5f1eb;
@@ -45,13 +47,29 @@
         .header {
             background: var(--accent);
             color: white;
-            padding: 18px 24px;
+            padding: 12px 24px;
             display: flex;
             align-items: center;
             justify-content: space-between;
             box-shadow: 0 2px 12px rgba(0,0,0,0.15);
         }
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+        }
+        .header-logo {
+            height: 40px;
+            width: auto;
+            display: block;
+        }
         .header h1 { font-size: 1.4rem; font-weight: 600; letter-spacing: 0.5px; }
+        @media (max-width: 480px) {
+            .header { padding: 10px 16px; }
+            .header-logo { height: 30px; }
+            .header h1 { font-size: 1.1rem; }
+        }
 
         .controls {
             max-width: 1400px;
@@ -521,7 +539,10 @@
 <body>
 
 <div class="header">
-    <h1 style="cursor:pointer" onclick="goHome()">BibleGateway at home</h1>
+    <div class="header-left" onclick="goHome()">
+        <img src="/logo_biblegateway.png" alt="BibleGateway logo" class="header-logo">
+        <h1>BibleGateway at home</h1>
+    </div>
     <div style="display:flex;gap:8px;align-items:center;">
         <button class="dark-toggle" id="langToggle" title="Toggle book name language">NO</button>
         <button class="dark-toggle" id="darkToggle" title="Toggle dark mode">&#9790;</button>

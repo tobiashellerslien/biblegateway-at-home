@@ -886,6 +886,18 @@ class BibleHandler(http.server.BaseHTTPRequestHandler):
             except Exception as e:
                 self._send_json({"error": str(e)}, 500)
 
+        elif path in ("/logo_biblegateway.png", "/favicon.ico"):
+            img_path = BASE_DIR / "logo_biblegateway.png"
+            if img_path.exists():
+                body = img_path.read_bytes()
+                self.send_response(200)
+                self.send_header("Content-Type", "image/png")
+                self.send_header("Content-Length", len(body))
+                self.end_headers()
+                self.wfile.write(body)
+            else:
+                self.send_error(404)
+
         else:
             self.send_error(404)
 
